@@ -16,6 +16,9 @@ const mealsSchema = new mongoose.Schema({
    sourceUrl: {
        type: String,
    },
+   imageUrl: {
+       type: String,
+   },
    title: {
        type: String,
    },

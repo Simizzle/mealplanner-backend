@@ -5,8 +5,8 @@ const { createMeal, findMeal, deleteMeal,
     } = require('./meals.controllers');
 
 mealRouter.post('/meals', createMeal);
-mealRouter.get('/meals/:title', findMeal);
-mealRouter.delete('/meals:title', deleteMeal);
+mealRouter.get('/meals/:date', findMeal);
+mealRouter.delete('/meals/:_id', deleteMeal);
 // mealRouter.put('/meals/', updateMeal);
 
 module.exports = mealRouter;
