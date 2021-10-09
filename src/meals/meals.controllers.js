@@ -23,13 +23,26 @@ exports.findMeal = async (req, res) => {
         res.status(500).send(error);
     }
 };  
+exports.findDate = async (req, res) => {
+    try {
+        // const date = req.params.date;
+        const targetMeal = await Meals.find(
+            { }
+            );
+        res.status(200).send({ targetMeal })
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};  
 
 
 exports.deleteMeal = async (req, res) => {
     try {
         const meal = req.params._id;
             const deletedMeal = await Meals.findOneAndDelete({_id: meal});
-            res.status(200).send({ user: deletedMeal, message: "Meal deleted" })
+            res.status(200).send({ 
+                // user: deletedMeal, message: "Meal deleted" 
+            })
     } catch (error) {
         res.staus(500).send(error);
     }  
