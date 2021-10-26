@@ -15,8 +15,20 @@ exports.createMeal = async (req, res) => {
 exports.findMeal = async (req, res) => {
     try {
         const date = req.params.date;
+        const user = req.params.user;
         const targetMeal = await Meals.find(
-            { date: date }
+            {user: user, date: date}
+            );
+        res.status(200).send({ targetMeal })
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};  
+exports.findMealTable = async (req, res) => {
+    try {
+        const user = req.params.user;
+        const targetMeal = await Meals.find(
+            {user: user}
             );
         res.status(200).send({ targetMeal })
     } catch (error) {
@@ -48,12 +60,15 @@ exports.deleteMeal = async (req, res) => {
     }  
 };
 
-// exports.updateMeal = async (req, res) => {
-//     try {
-//         const meal = req.body.title;
-//         const mealUpdate = await Movies.updateOne({title: title, watched: watched, rating: rating});
-//         res.status(200).send({ meal: mealUpdate, message: "Movie updated"})
-//     } catch (error) {
-//         res.status(500).send(error)
-//     }
-// };
+exports.updateMeal = async (req, res) => {
+    try {
+        const favourite = req.body.favourite;
+        const meal = req.params._id;
+        const mealUpdate = await Meals.updateOne({_id: meal},
+        {favourite: favourite}
+         );
+        res.status(200).send({ meal: mealUpdate})
+    } catch (error) {
+        res.status(500).send(error)
+    }
+};

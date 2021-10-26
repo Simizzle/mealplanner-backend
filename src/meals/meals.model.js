@@ -24,6 +24,12 @@ const mealsSchema = new mongoose.Schema({
    },
    date: {
        type: String,
+   },
+   user: {
+       type: String,
+   },
+   favourite: {
+       type: Boolean,
    }
 });
 
