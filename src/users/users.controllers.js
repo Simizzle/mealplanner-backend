@@ -13,7 +13,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.authUsers = async (req, res) => {
+exports.authUser = async (req, res) => {
     res.status(200).send(req.user)
   };
 
@@ -34,8 +34,9 @@ exports.authUsers = async (req, res) => {
 exports.findUser = async (req, res) => {
   try {
     const user = req.params.username;
-    const targetUser = await User.findOne({ username: user });
-    res.status(200).send({ user: targetUser });
+    const targetUser = await User.findOne({ username: user, password: req.body.password });
+    const token = await targetUser.generateAuthToken(targetUser._id)
+    res.status(200).send({ user: targetUser, token: token });
   } catch (error) {
     res.status(500).send(error);
   }
