@@ -33,7 +33,11 @@ exports.authUsers = async (req, res) => {
 exports.findUser = async (req, res) => {
   try {
     const user = req.params.username;
-    const targetUser = await User.findOne({ username: user });
+    const password = req.body.password
+    const targetUser = await User.findOne({ 
+    username: user,
+    password: password, 
+  });
     res.status(200).send({ user: targetUser });
   } catch (error) {
     res.status(500).send(error);
