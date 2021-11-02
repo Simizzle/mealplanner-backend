@@ -38,7 +38,8 @@ exports.findUser = async (req, res) => {
     username: user,
     password: password, 
   });
-    res.status(200).send({ user: targetUser });
+    const token = await targetUser.generateAuthToken(targetUser._id)
+    res.status(200).send({ user: targetUser, token: token });
   } catch (error) {
     res.status(500).send(error);
   }
