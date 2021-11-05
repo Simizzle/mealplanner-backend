@@ -20,5 +20,5 @@ userSchema.methods.generateAuthToken = async (id) => {
   const token = jwt.sign({id: id}, process.env.SECRET)
   return token;
 }
-const User = mongoose.model('User',userSchema);
+const User = mongoose.model('User', userSchema);
 module.exports = User;
